@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Little K-Drama Apology</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/index.min.js"></script>
+</head>
+<body>
+  <div class="backdrop">
+    <div class="glow glow-left"></div>
+    <div class="glow glow-right"></div>
+    <div class="petal petal-1"></div>
+    <div class="petal petal-2"></div>
+    <div class="petal petal-3"></div>
+    <div class="floating floating-1"></div>
+    <div class="floating floating-2"></div>
+    <div class="floating floating-3"></div>
+  </div>
+
+  <main class="page-shell">
+    <section class="editor-panel">
+      <div class="editor-copy">
+        <p class="eyebrow">Episode Edit</p>
+        <h2>Rewrite the scene before you send it.</h2>
+        <p>
+          Change the name, the confession, and the last line. The preview updates live,
+          so anyone can turn this into their own K-drama apology before sending it.
+        </p>
+      </div>
+
+      <form class="editor-grid" id="editor-form">
+        <label>
+          <span>Recipient name</span>
+          <input id="recipientName" name="recipientName" type="text" value="ahladita">
+        </label>
+
+        <label>
+          <span>Recipient email</span>
+          <input id="recipientEmail" name="recipientEmail" type="email" value="ahladita2018@gmail.com" placeholder="her@email.com">
+        </label>
+
+        <label>
+          <span>Relationship word</span>
+          <input id="relationshipWord" name="relationshipWord" type="text" value="the person my heart keeps choosing">
+        </label>
+
+        <label class="full">
+          <span>Hero headline</span>
+          <input id="headline" name="headline" type="text" value="I am sorry, ahladita.">
+        </label>
+
+        <label class="full">
+          <span>Short intro</span>
+          <textarea id="lead" name="lead" rows="3">Not the kind of sorry said in a hurry. The kind that stays up late, replays the scene, and wishes it had protected your heart better.</textarea>
+        </label>
+
+        <label class="full">
+          <span>Letter paragraph 1</span>
+          <textarea id="letterOne" name="letterOne" rows="4">I know an apology is not a dramatic ending where everything becomes fine in one moment. I hurt you, and I hate that I became the reason your heart felt heavy. I was wrong, I regret it deeply, and I want to face that honestly instead of hiding behind excuses.</textarea>
+        </label>
+
+        <label class="full">
+          <span>Letter paragraph 2</span>
+          <textarea id="letterTwo" name="letterTwo" rows="4">If there is even a small chance for me, I want the next episodes to look different. Softer words. Better actions. More care. And if you need time before answering me, I will respect that with my whole heart.</textarea>
+        </label>
+
+        <label>
+          <span>Reason card 1</span>
+          <input id="reasonOne" name="reasonOne" type="text" value="YoU MADE MY LIFE DIFFICULT AND I TOOK MANY HEARTBREAKS FROM YOU , I CANT STAND THE OTHER">
+        </label>
+
+        <label>
+          <span>Reason card 2</span>
+          <input id="reasonTwo" name="reasonTwo" type="text" value="You ARE MY FIST AND FINEST.">
+        </label>
+
+        <label>
+          <span>Reason card 3</span>
+          <input id="reasonThree" name="reasonThree" type="text" value="I do not want pride to ruin something real.">
+        </label>
+
+        <label class="full">
+          <span>Final question</span>
+          <input id="finalQuestion" name="finalQuestion" type="text" value="WHY BE WITH SOMEONE ELSE WHEN U ARE THEIR 2ND CHOICE.?">
+        </label>
+
+        <div class="editor-actions full">
+          <button class="primary-btn" id="save-text" type="button">Save permanently</button>
+          <button class="secondary-btn" id="copy-link" type="button">Copy custom link</button>
+          <button class="secondary-btn" id="reset-form" type="button">Reset text</button>
+          <span class="copy-status" id="copy-status">Live preview is active.</span>
+        </div>
+      </form>
+    </section>
+
+    <section class="hero-card">
+      <div class="episode-meta">
+        <p class="eyebrow">Episode 01</p>
+        <p class="korean-note">mianhae. jinjja mianhae.</p>
+      </div>
+      <p class="hero-caption">A page made only to say this properly, for <span data-bind="recipientName">ahladita</span></p>
+      <h1 data-bind="headline">I am sorry, ahladita.</h1>
+      <p class="lead" data-bind="lead">
+        Not the kind of sorry said in a hurry. The kind that stays up late, replays the scene,
+        and wishes it had protected your heart better.
+      </p>
+
+      <div class="promise-strip">
+        <span>I know I hurt you.</span>
+        <span>I should have chosen kindness faster.</span>
+        <span>You deserved warmth, not confusion.</span>
+      </div>
+
+      <div class="hero-actions">
+        <button class="primary-btn" id="open-letter">Open the letter</button>
+        <a class="secondary-btn" href="#reasons">Why you are my favorite scene</a>
+      </div>
+    </section>
+
+    <section class="letter-section" id="letter">
+      <div class="envelope" id="envelope">
+        <div class="envelope-lid"></div>
+        <div class="envelope-body"></div>
+        <article class="letter-card">
+          <p class="letter-to">To <span data-bind="recipientName">ahladita</span>, <span data-bind="relationshipWord">the person my heart keeps choosing</span>,</p>
+          <p data-bind="letterOne">
+            I know an apology is not a dramatic ending where everything becomes fine in one
+            moment. I hurt you, and I hate that I became the reason your heart felt heavy. I
+            was wrong, I regret it deeply, and I want to face that honestly instead of hiding
+            behind excuses.
+          </p>
+          <p data-bind="letterTwo">
+            If there is even a small chance for me, I want the next episodes to look different.
+            Softer words. Better actions. More care. And if you need time before answering me,
+            I will respect that with my whole heart.
+          </p>
+          <p class="signature">Still choosing you, in every version of this story.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="memory-grid" id="reasons">
+      <article class="memory-card">
+        <span class="memory-number">01</span>
+        <h2 data-bind="reasonOne">You da my  first choice always been</h2>
+        <p>Even my messiest days become quieter the moment your name appears.</p>
+      </article>
+      <article class="memory-card">
+        <span class="memory-number">02</span>
+        <h2 data-bind="reasonTwo">You make small moments feel cinematic.</h2>
+        <p>Late replies, tiny jokes, random walks. Somehow they all replay like favorite scenes.</p>
+      </article>
+      <article class="memory-card">
+        <span class="memory-number">03</span>
+        <h2 data-bind="reasonThree">I do not want pride to ruin something real.</h2>
+        <p>This page exists because you are worth effort, reflection, and a gentler version of me.</p>
+      </article>
+    </section>
+
+    <section class="choice-panel">
+      <div class="choice-copy">
+        <p class="eyebrow">Final Scene</p>
+        <h2 data-bind="finalQuestion">Can I earn one more scene with you?</h2>
+        <p>
+          You do not have to answer right away. But if your heart leaves even a tiny light on for me,
+          I will meet that kindness with steadiness, not just words.
+        </p>
+      </div>
+
+      <div class="choice-actions" id="choice-actions">
+        <button class="forgive-btn" id="yes-btn">yes</button>
+        <button class="secondary-btn" id="no-btn" aria-label="Not yet">Not yet</button>
+      </div>
+
+      <p class="response-line" id="response-line">I can wait, but I wanted to say it beautifully.</p>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
