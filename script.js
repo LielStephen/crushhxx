@@ -15,6 +15,16 @@ const resetFormButton = document.getElementById("reset-form");
 const saveTextButton = document.getElementById("save-text");
 const copyStatus = document.getElementById("copy-status");
 
+// Disable all form inputs to prevent editing
+function disableAllFormInputs() {
+  const formInputs = editorForm.querySelectorAll('input, textarea, button');
+  formInputs.forEach(input => {
+    input.disabled = true;
+  });
+  editorForm.style.pointerEvents = 'none';
+  editorForm.style.opacity = '0.5';
+}
+
 const defaults = Object.fromEntries(new FormData(editorForm).entries());
 const boundNodes = [...document.querySelectorAll("[data-bind]")];
 
@@ -149,9 +159,20 @@ function moveNoButton() {
 
 openLetterButton.addEventListener("click", openLetter);
 editorForm.addEventListener("input", updatePreview);
-copyLinkButton.addEventListener("click", copyCustomLink);
-resetFormButton.addEventListener("click", resetForm);
-saveTextButton.addEventListener("click", saveToLocalStorage);
+
+// Disable editor form button actions
+copyLinkButton.addEventListener("click", (e) => {
+  e.preventDefault();
+  copyStatus.textContent = "This is a read-only view. You cannot edit or copy links.";
+});
+resetFormButton.addEventListener("click", (e) => {
+  e.preventDefault();
+  copyStatus.textContent = "This is a read-only view. You cannot reset the form.";
+});
+saveTextButton.addEventListener("click", (e) => {
+  e.preventDefault();
+  copyStatus.textContent = "This is a read-only view. You cannot save changes.";
+});
 
 async function sendNotificationEmail() {
   if (EMAILJS_PUBLIC_KEY === "YOUR_PUBLIC_KEY") {
@@ -191,6 +212,15 @@ window.addEventListener("load", () => {
   loadFromLocalStorage();
   applyQueryParams();
   updatePreview();
+  disableAllFormInputs();
+
+  // Show notification message
+  const notificationBanner = document.querySelector('.notification-banner');
+  if (notificationBanner) {
+    setTimeout(() => {
+      notificationBanner.style.opacity = '0.9';
+    }, 100);
+  }
 
   setTimeout(() => {
     responseLine.textContent = "If you are still reading, that already means more than you know.";
