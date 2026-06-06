@@ -197,6 +197,14 @@ const EMAILJS_PUBLIC_KEY = 'zue0TwvrYFugZfFcX';
     let lastSpawn = 0;
     const SPAWN_COOLDOWN = 80; 
     document.addEventListener('click', (ev) => {
+      // If the click was on an element that should open the envelope, do that first
+      const targetEl = ev.target instanceof Element ? ev.target : null;
+      const opener = targetEl ? targetEl.closest('[data-open-envelope]') : null;
+      if (opener) {
+        ev.preventDefault();
+        openLetter();
+      }
+
       const now = Date.now();
       if (now - lastSpawn < SPAWN_COOLDOWN) return;
       lastSpawn = now;
@@ -219,7 +227,7 @@ const EMAILJS_PUBLIC_KEY = 'zue0TwvrYFugZfFcX';
   function spawnFlower(clientX, clientY) {
     const el = document.createElement('span');
     el.className = 'cursor-flower';
-    // pick a gentle flower emoji (rotating through a few for variety)
+    
     const variants = ['🌸', '💐', '🌷', '🌺'];
     el.textContent = variants[Math.floor(Math.random() * variants.length)];
     document.body.appendChild(el);
