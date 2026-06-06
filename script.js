@@ -120,6 +120,11 @@ const EMAILJS_PUBLIC_KEY = 'zue0TwvrYFugZfFcX';
     if (letter) letter.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 
+  function closeLetter() {
+    if (!envelope) return;
+    envelope.classList.remove('open');
+  }
+
   function moveNoButton() {
     if (!noButton || !choiceActions || !responseLine) return;
     if (window.innerWidth < 640) {
@@ -188,15 +193,26 @@ const EMAILJS_PUBLIC_KEY = 'zue0TwvrYFugZfFcX';
       noButton.addEventListener('mouseenter', moveNoButton);
       noButton.addEventListener('click', moveNoButton);
     }
-    // Click anywhere to spawn a little flower where the pointer is
+   
     let lastSpawn = 0;
-    const SPAWN_COOLDOWN = 80; // ms
+    const SPAWN_COOLDOWN = 80; 
     document.addEventListener('click', (ev) => {
       const now = Date.now();
       if (now - lastSpawn < SPAWN_COOLDOWN) return;
       lastSpawn = now;
       spawnFlower(ev.clientX, ev.clientY);
     });
+
+    // Close the letter when the user scrolls down
+    let lastScrollY = window.scrollY || 0;
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY || 0;
+      // only react to meaningful downward scrolls
+      if (y - lastScrollY > 10) {
+        if (envelope && envelope.classList.contains('open')) closeLetter();
+      }
+      lastScrollY = y;
+    }, { passive: true });
   }
 
   // Create a small flower element (emoji) at the given viewport coordinates
