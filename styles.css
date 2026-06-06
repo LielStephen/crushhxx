@@ -493,6 +493,28 @@ a {
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.68), rgba(255, 249, 253, 0.6));
 }
 
+/* Improve long/headline text inside memory cards */
+.memory-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  min-height: 8rem;
+}
+
+.memory-card h2 {
+  margin: 0;
+  font-family: "Marcellus", serif;
+  font-size: clamp(1.1rem, 1.8vw, 1.6rem);
+  line-height: 1.12;
+  color: var(--text);
+  font-weight: 700;
+  text-transform: none; /* preserve original casing */
+  overflow-wrap: anywhere;
+  white-space: normal;
+  word-break: break-word;
+  letter-spacing: 0;
+}
+
 .memory-number {
   display: inline-block;
   margin-bottom: 1rem;
