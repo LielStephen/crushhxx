@@ -643,3 +643,28 @@ a {
     width: 100%;
   }
 }
+
+/* Cursor flower effect */
+.cursor-flower {
+  position: fixed;
+  left: 0;
+  top: 0;
+  transform: translate(-50%, -50%) scale(0.8);
+  pointer-events: none;
+  font-size: 1.4rem;
+  line-height: 1;
+  opacity: 1;
+  transition: transform 520ms cubic-bezier(.2,.8,.2,1), opacity 520ms ease;
+  will-change: transform, opacity;
+  z-index: 1200;
+  text-shadow: 0 4px 18px rgba(129,102,198,0.16);
+}
+
+.cursor-flower.pop {
+  transform: translate(-50%, -70%) scale(1.8);
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor-flower { transition: none; }
+}
